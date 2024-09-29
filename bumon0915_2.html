@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自動運転ミニカーバトル 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            color: #1B435D;
+        }
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+        header {
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/background-aYVJvHFjEEmlrlYRQjQgRim2utvUx1.png');
+            background-repeat: repeat;
+            background-size: auto;
+            padding: 1rem 0;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1B435D;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0;
+            list-style-type: none;
+            margin: 0;
+        }
+        nav button {
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav button:nth-child(odd) {
+            background-color: #F99F48;
+            color: white;
+        }
+        nav button:nth-child(even) {
+            background-color: #E0E0E0;
+            color: #1B435D;
+        }
+        nav button:hover {
+            opacity: 0.8;
+        }
+        main {
+            flex-grow: 1;
+        }
+        .participant-count {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .participant-count div {
+            text-align: center;
+        }
+        .participant-count p {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+        .participant-count h2 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #F99F48;
+            margin: 0;
+        }
+        .minicar-grid {
+            height: 400px;
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+        .minicar-grid-inner {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+        .minicar-button {
+            background-color: #3b82f6;
+            aspect-ratio: 1 / 1;
+            border-radius: 0.375rem;
+            position: relative;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .minicar-button:hover {
+            background-color: #2563eb;
+        }
+        .minicar-button span {
+            position: absolute;
+            bottom: 0.25rem;
+            left: 0.25rem;
+            color: white;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            width: 100%;
+            max-width: 48rem;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .modal-body {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow: auto;
+        }
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .minicar-grid-inner {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            nav ul {
+                flex-wrap: wrap;
+            }
+            nav button {
+                flex: 1 1 40%;
+            }
+            .participant-count {
+                flex-direction: column;
+                align-items: center;
+            }
+            .participant-count div {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>自動運転ミニカーバトル 2024</h1>
+            <nav>
+                <ul>
+                    <li><button>HOME</button></li>
+                    <li><button>紹介</button></li>
+                    <li><button>制限・無制限部門</button></li>
+                    <li><button>発明クラブ部門</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin: 2rem 0;">
+            <div class="participant-count">
+                <div>
+                    <p>制限部門参加者数</p>
+                    <h2>1,286</h2>
+                </div>
+                <div>
+                    <p>無制限部門参加者数</p>
+                    <h2>742</h2>
+                </div>
+            </div>
+            <div style="border: 1px solid #e5e7eb; padding: 1rem; border-radius: 0.375rem;">
+                <h3 style="font-weight: bold; margin-bottom: 0.5rem;">タイムスケジュール</h3>
+                <p style="font-size: 0.875rem;">固定</p>
+            </div>
+        </div>
+
+        <section style="margin-bottom: 2rem;">
+            <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; margin-bottom: 1rem;">コース説明</h2>
+            <div style="background-color: #f3f4f6; height: 8rem; display: flex; align-items: center; justify-content: center; color: #6b7280;">
+                コース説明のコンテンツをここに配置
+            </div>
+        </section>
+
+        <section>
+            <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; margin-bottom: 1rem;">ミニカー紹介</h2>
+            <div class="minicar-grid">
+                <div class="minicar-grid-inner">
+                    <!-- 100個のボタンを生成 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" style="font-size: 1.125rem; font-weight: bold;"></h3>
+                <button id="closeModal" style="background: none; border: none; cursor: pointer;">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" title="PDF Viewer"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PDFリンクを管理するオブジェクト
+        const pdfLinks = {
+            1: "https://drive.google.com/file/d/1BFVO-dY3ZclCVWczqY41d14NVkUtBFtj/preview",
+            2: "https://drive.google.com/file/d/1BznQz29bBvfYclnB0PfC_lNnuHOf3WYA/preview",
+            // 実際のリンクに置き換えてください
+        };
+
+        // ミニカーボタンの生成
+        const minicarGrid = document.querySelector('.minicar-grid-inner');
+        for (let i = 1; i <= 100; i++) {
+            const button = document.createElement('button');
+            button.className = 'minicar-button';
+            button.innerHTML = `<span>${i}</span>`;
+            button.onclick = () => openPDF(i);
+            minicarGrid.appendChild(button);
+        }
+
+        // PDFモーダルの制御
+        const modal = document.getElementById('pdfModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const pdfFrame = document.getElementById('pdfFrame');
+        const closeModal = document.getElementById('closeModal');
+
+        function openPDF(index) {
+            modalTitle.textContent = `ミニカー ${index} の詳細`;
+            if (pdfLinks[index]) {
+                pdfFrame.src = pdfLinks[index];
+                modal.style.display = 'flex';
+            } else {
+                alert('このミニカーのPDFはまだ登録されていません。');
+            }
+        }
+
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+            pdfFrame.src = ''; // iframeのソースをクリア
+        }
+
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                pdfFrame.src = ''; // iframeのソースをクリア
+            }
+        }
+
+        // ナビゲーションタブの制御
+        const navButtons = document.querySelectorAll('nav button');
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

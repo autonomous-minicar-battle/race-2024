@@ -1,0 +1,501 @@
+:root {
+    --orange: #fceacf;
+    --white: #FFFFFF;
+    --black: #383737f5;
+    --light-gray: #E0E0E0;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 5%;
+    padding: 0;
+    background-color: var(--orange);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+.title {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    background: #a0daea00;
+}
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+        
+header img {
+    max-width: 100%;
+    height: auto;
+}
+
+nav a {
+    color: var(--black);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+
+nav a:hover, nav a:focus, nav a.active {
+    background-color: var(--light-gray);
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.main-content-image {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 400px;
+    margin-right: 7rem;
+}
+
+.main-content-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.adjusted-image {
+    margin-right: 100px;
+    margin-bottom: 20px;
+}
+.main-content-text {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-content-text h2 {
+    color: var(--white);
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.map-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.main-content-text p {
+    color: var(--black);
+    margin: 0;
+}
+
+.event-overview-content {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+
+
+@media (min-width: 768px) {
+    .about {
+        font-size: 20px;
+    }
+    .event-overview-content {
+        flex-direction: row;
+    }
+}
+.animated-car {
+    position: fixed;
+    width: 60px;
+    height: auto;
+    z-index: 1000;
+    transition: all 2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 9px;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .main-content-image {
+        margin-right: 0;
+        max-width: 100%;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    
+    .animated-car {
+        width: 40px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .main-content-image {
+        max-width: 350px;
+    }
+    
+    .animated-car {
+        width: 50px;
+    }
+}
+.access-map {
+    width: 100%;
+    height: 256px;
+    background-color: #ccc;
+    border-radius: 0.5rem;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 80%;
+    max-height: 80%;
+}
+.popup-content img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+/* クリック可能なテキストのスタイル */
+.clickable {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.car-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 1cm;
+}
+.car-carousel-inner {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    height: 100%;
+}
+.car-photo {
+    flex: 0 0 100%;
+    height: 100%;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #718096;
+}
+.car-photo img {
+    width: 100%; /* 画像の横幅を親要素に合わせる */
+    height: auto; /* 縦横比を維持しつつ高さを自動調整 */
+    max-width: 1000px; /* 最大幅を指定、必要に応じて調整可能 */
+    max-height: 600px; /* 最大高さを指定、必要に応じて調整可能 */
+    object-fit: cover; /* 画像を要素にきれいに収める */
+}
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(240, 238, 238, 0.397);
+    border: none;
+    border-radius: 9999px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.carousel-button:hover {
+    background-color: #A0DAEA;
+}
+.carousel-button.prev {
+    left: 10px;
+}
+.carousel-button.next {
+    right: 10px;
+}
+.carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+.carousel-dot {
+    width: 8.4px;
+    height: 12px;
+    border-radius: 30%;
+    background-color: #E5F3FF;
+    border: 2px solid #808080;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.carousel-dot.active {
+    background-color: #000000;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    }
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+.github-corner {
+    max-width: 300px;
+    top: 0;
+    right: 0;
+    border: 0;
+    z-index: 100;
+}
+header {
+    overflow: hidden;
+    width: 100%;
+}
+
+.use-rgba-image {
+    background: rgba(255, 255, 255, 0);
+}
+
+footer .footer-credits {
+    text-align: center; /* 親要素にセンタリングを指定 */
+}
+
+footer .footer-credits img {
+    display: block;      /* ブロック要素として扱う */
+    margin: 0 auto;      /* 左右のマージンを自動で設定 */
+    max-width: 25%;
+}
+
+.header-image {
+    height: 96px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/background-3pGTlaIOfFrylYzBT5U0ONFnONjZ3v.png');
+    background-size: cover;
+    background-position: center;
+}
+.header-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    opacity: 0.3;
+}
+.about
+{
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+h1 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: #1B435D;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    list-style-type: none;
+    margin: 0;
+}
+nav a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    color: white;
+    background-color: #D9BB97;
+    transition: background-color 0.3s;
+    display: inline-block;
+}
+nav a:hover, nav a.active {
+    background-color: #1B435D;
+}
+nav a.inactive {
+    background-color: #c6c7c9;
+}
+main {
+    flex-grow: 1;
+    width: 100%;
+}
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #38326e;
+    border-bottom: thick double #0a0a0a;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+h3 {
+    font-size: 1.2rem;
+    margin-top: 0rem;
+    font-weight: bold;
+    color: #000000ec;
+    margin-bottom: 0rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+.grid-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s;
+}
+.grid-item:hover {
+    transform: scale(1.05);
+}
+img {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+}
+img.responsive-img {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+}
+section {
+    margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+    .about p {
+        font-size: 1.5em; /* PC画面では文字を大きくする */
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .header-image {
+        height: 72px;
+    }
+    nav ul {
+        flex-direction: row;
+        align-items: center;
+    }
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inline-content {
+        display: inline-flex;  /* 画像とテキストを横並びに */
+        align-items: center;   /* 画像とテキストを縦方向の中央に揃える */
+        gap: 5px;              /* 画像とテキストの間にスペースを追加 */
+    }
+    .inline-content img {
+        vertical-align: middle; /* 画像の垂直位置を調整 */
+    }   
+    .event-details {
+        display: flex;               /* 横並びにする */
+        justify-content: space-between; /* 均等にスペースを配置 */
+        align-items: flex-start;     /* 上揃え */
+    }
+    
+    .event-info {
+        flex: 1;                     /* 均等な幅にする */
+        padding: 10px;               /* 内側の余白 */
+        box-sizing: border-box;       /* paddingを含む幅の計算 */
+    }
+    
+    iframe {
+        max-width: 100%;             /* iframeの横幅が親要素に収まるように */
+        height: auto;
+    }
+    
+    @media (max-width: 768px) {
+        .event-details {
+            flex-direction: column;  /* モバイルでは縦並びに */
+        }
+    }
+}
+
