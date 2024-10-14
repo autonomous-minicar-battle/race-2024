@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>小学生部門</title>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --orange: #fceacf;
+                --white: #FFFFFF;
+                --black: #000000;
+                --light-gray: #E0E0E0;
+            }
+            body {
+                font-family: 'Noto Sans JP', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: var(--orange);
+                color: var(--black);
+                font-size: 16px;
+                line-height: 1.5;
+                overflow-x: hidden;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+                box-sizing: border-box;
+            }
+            
+            header {
+                background-color: var(--orange);
+                padding: 1rem 0;
+                position: relative;
+                text-align: center;
+            }
+            header img {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #1B435D;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            nav ul {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0;
+                list-style-type: none;
+                margin: 0;
+            }
+            nav button {
+                padding: 0.5rem 1rem;
+                border-radius: 1.5rem;
+                border: none;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            nav button:nth-child(odd) {
+                background-color: #F99F48;
+                color: white;
+            }
+            nav button:nth-child(even) {
+                background-color: #E0E0E0;
+                color: #1B435D;
+            }
+            nav button:hover {
+                opacity: 0.8;
+            }
+            main {
+                flex-grow: 1;
+            }
+            .participant-count {
+                display: flex;
+                justify-content: space-evenly;
+                margin-bottom: 1rem;
+            }
+            .participant-count div {
+                text-align: center;
+            }
+            .participant-count p {
+                font-size: 0.875rem;
+                margin-bottom: 0.25rem;
+            }
+            .participant-count h2 {
+                font-size: 2.25rem;
+                font-weight: bold;
+                color: #4854f9;
+                margin: 0;
+            }
+            .grad {
+                background-color: #767373;
+                position: relative;
+            }
+            .gradation {
+                font-size: 0.7rem;
+                font-weight: bold;
+                background: linear-gradient(90deg, #4158D0, #5dedb8 30%, #FFCC70);
+                background: -webkit-linear-gradient(0deg, #4158D0, #5dedb8 30%, #FFCC70);
+                background-size: 300% auto;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: gradientEffect 2.5s infinite alternate;
+            }
+            @keyframes gradientEffect {
+                from {background-position: left}
+                to {background-position: right}
+            }
+            .gradation_bg {
+                font-size: 0.7rem;
+                font-weight: bold;
+                color:#FFFFFF;
+                position: absolute;
+                inset: -5px;
+                z-index: -1;
+                /* 追加 */
+                -webkit-text-stroke: 2px rgb(255, 255, 255);
+            }
+            .minicar-grid {
+                height: 400px;
+                overflow-y: auto;
+                padding-right: 1rem;
+            }
+            .minicar-grid-inner {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            .minicar-button {
+                background: linear-gradient(135deg, #9dd2f4, #f99f48); /* グラデーションを追加 */
+                width: 100%;  /* 親要素に対して幅を100%に */
+                min-height: 150px; /* 高さを固定 */
+                aspect-ratio: 1/1.2;
+                border-radius: 0.375rem;
+                position: relative;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                overflow: hidden; /* 画像がはみ出さないように */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end; /* 文字を下に揃える */
+                padding: 0.5rem; /* 文字に余白を追加 */
+                text-align: center; /* 文字を中央揃え */
+            }
+
+            .car-image {
+                position: absolute;
+                object-fit: cover; /* アスペクト比を維持しつつ要素を埋める */
+                transition: opacity 0.3s ease; /* 画像の切り替えにフェードを追加 */
+            }
+
+            .minicar-button span {
+                position: absolute;
+                top: 5pt;
+                color: white;
+                font-weight: bold;
+                font-size: 1.0rem;
+                z-index: 10; /* 文字が画像の上に表示されるように */
+                padding-top: 0.25rem; /* テキストの余白を追加 */
+            }
+
+            .minicar-button:hover {
+                background: linear-gradient(135deg, #5dedb8, #f99f48);
+            }
+            .hidden {
+                opacity: 0;
+                z-index: 0;
+            }
+            .visible {
+                opacity: 1;
+                z-index: 10;
+            }
+            @media only screen and (max-width: 768px) {
+            h3 {
+                font-size: 0.9rem;
+            }
+            body {
+                font-family: 'Noto Sans JP', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: var(--orange);
+                color: var(--black);
+                font-size: 10px;
+                line-height: 1.5;
+                overflow-x: hidden;
+            }
+            .minicar-button {
+                top: 10px;
+                background: linear-gradient(135deg, #9dd2f4, #f99f48); /* グラデーションを追加 */
+                min-height: 10pt; /* 高さを固定 */
+            }
+            .minicar-button span {
+                font-size: 0.42rem;
+            }
+            }
+            .schedule-image {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                border-radius: 0.375rem;
+            }
+            @media (max-width: 768px) {
+                .minicar-grid-inner {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                nav ul {
+                    flex-wrap: wrap;
+                }
+                nav button {
+                    flex: 1 1 40%;
+                }
+                .participant-count {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .participant-count div {
+                    margin-bottom: 1rem;
+                }
+                .minicarr-button span{
+                    font-size: 0.5rem;
+                }
+            }
+        </style>
+</head>
+<body>
+    <header>
+        <div class="title">
+            <div class="use-rgba-image">
+                <img src="assets/images/amb_2024_title.svg" alt="自動運転ミニカーバトル2024　タイトル">
+                <nav>
+                    <ul>
+                        <li><a href="https://autonomous-minicar-battle.github.io/race-2024/" >HOME</a></li>
+                        <li><a href="#">※準備中<br>制限・無制限部門</a></li>
+                        <li><a href="#"class="active">小学生部門</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="padding: 0.5rem; border-radius: 0.375rem;">
+        <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; margin-bottom: 1rem;">当日の注意事項</h2>
+    </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; ">
+            <div>
+            <img src="assets/images/bumon_junior/time.svg" alt="タイム" class="schedule-image">
+            </div>
+
+            <div>
+            <img src="assets/images/bumon_junior/place.svg" alt="場所" class="schedule-image">
+            </div>
+
+            <div>
+            <img src="assets/images/bumon_junior/brings.svg" alt="持ち物" class="schedule-image">
+            </div>
+        </div>
+        <p style="font-size: 0.7rem;">１．出場者の使用テーブルは１チーム１台までです。
+            <br>２．電源は運営で用意します（４口タップ）
+            <br>３．お昼休憩はありません。各自空き時間にお昼休憩を取りましょう。
+        </p>
+
+        <div style=" padding: 0.5rem; border-radius: 0.375rem;">
+            <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; margin-bottom: 1rem;">スケジュール</h2>
+            <img src="assets/images/bumon_junior/bumon_junior_schedule.svg" alt="タイムスケジュール" class="schedule-image">
+        </div>
+    
+        <section>
+            <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; ">出場者・マシン紹介</h2>
+            <div class="grad">
+                <p class="gradation">クリックでマシンの画像が切り替わるよ！</p>
+            </div>
+            <div class="minicar-grid">
+                <div class="minicar-grid-inner">
+                    <!-- ミニカーのボタンを生成 -->
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        // CSVファイルを読み込んでデータを取得
+        fetch('assets/data/minicar_data_junior.csv')
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n').slice(1);
+                const imageLinks = {};
+                const imageLinksb = {};
+                const teamNames = {};
+                const carNames = {};
+    
+                rows.forEach(row => {
+                    const [entry_number, pdf_link, image_link, image_linkb, team, car_name] = row.split(',');
+                    if (entry_number && pdf_link && image_link) {
+                        imageLinks[entry_number.trim()] = image_link.trim();
+                        imageLinksb[entry_number.trim()] = image_linkb.trim();
+                        teamNames[entry_number.trim()] = team.trim();
+                        carNames[entry_number.trim()] = car_name.trim();
+                    }
+                });
+    
+                // ミニカーボタンの生成
+                const minicarGrid = document.querySelector('.minicar-grid-inner');
+                for (const entry in teamNames) {
+                    const button = document.createElement('button');
+                    button.className = 'minicar-button';
+                    button.innerHTML = `
+                            <img src="${imageLinks[entry]}" alt="ミニカー ${teamNames[entry]}" class="car-image front-image visible"><br>
+                            <img src="${imageLinksb[entry]}" alt="ミニカー ${teamNames[entry]}" class="car-image back-image hidden"><br>
+                        <span>No:${entry}<br><br>
+                            チーム名: ${teamNames[entry]}<br>
+                            マシン名: ${carNames[entry]}<br>
+                        </span>`;
+                    minicarGrid.appendChild(button);
+    
+                    // クリック時に画像を切り替えるイベントを追加
+                    button.addEventListener('click', function() {
+                        const frontImage = this.querySelector('.front-image');
+                        const backImage = this.querySelector('.back-image');
+                        if (frontImage.classList.contains('visible')) {
+                            frontImage.classList.remove('visible');
+                            frontImage.classList.add('hidden');
+                            backImage.classList.remove('hidden');
+                            backImage.classList.add('visible');
+                        } else {
+                            backImage.classList.remove('visible');
+                            backImage.classList.add('hidden');
+                            frontImage.classList.remove('hidden');
+                            frontImage.classList.add('visible');
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('CSVファイルの読み込みエラー:', error));
+    </script>
+</body>
+</html>
