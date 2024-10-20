@@ -33,6 +33,18 @@
             box-sizing: border-box;
         }
 
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        iframe {
+            width: 100%;
+            border: none;
+            height: auto;
+        }
+
         header {
             background-color: var(--orange);
             padding: 1rem 0;
@@ -326,6 +338,23 @@
     </div>
 
     <script>
+        function adjustIframeHeight() {
+            // 画像とiframeの要素を取得
+            var image = document.getElementById("schedule-image");
+            var iframe = document.getElementById("schedule-iframe");
+
+            // 画像の高さを取得し、iframeに適用
+            if (image && iframe) {
+                iframe.style.height = image.clientHeight + 'px';
+            }
+        }
+
+        // ページ読み込み時とウィンドウリサイズ時に高さを調整
+        window.onload = adjustIframeHeight;
+        window.onresize = adjustIframeHeight;
+    </script>
+
+    <script>
         function toggleMenu() {
             var menu = document.getElementById('menu');
             if (menu.style.display === 'block') {
@@ -340,15 +369,16 @@
         <div style="padding: 0.5rem; border-radius: 0.375rem;">
             <h2 style="font-size: 1.25rem; border-bottom: 2px solid #F99F48; padding-bottom: 0.5rem; margin-bottom: 1rem;">当日の注意事項</h2>
         </div>
+
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; ">
             <div >
                 <h3 style="font-weight: bold; margin-bottom: 0.5rem;">当日のスケジュール</h3>
-                <img src="./assets/images/schedule_seigenmuseigen.svg" alt="制限無制限部門　スケジュール">
+                <img src="./assets/images/schedule_seigenmuseigen.svg" alt="制限無制限部門　スケジュール" id="schedule-image">
             </div>
 
             <div >
                 <h3 style="font-weight: bold; margin-bottom: 0.5rem;">説開会資料一部抜粋</h3>
-                <iframe src="https://drive.google.com/file/d/1W7JMIvKXgTGep75GnAivkRQjuOTUJ5Ds/preview" width="90%" height="90%">
+                <iframe  src="https://drive.google.com/file/d/1W7JMIvKXgTGep75GnAivkRQjuOTUJ5Ds/preview" width="100%" style="height: auto;" id="schedule-iframe">
                     このブラウザではPDFが表示できません。PDFを<a href="https://drive.google.com/file/d/1rbLQxxYagGzeg9zXDnmsyh0Fbmd6jfNw">こちら</a>からダウンロードしてください。
                 </iframe>
             </div>
