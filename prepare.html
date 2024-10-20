@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>準備中ページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>準備中</h1>
+        <p>このページは現在準備中です。もうしばらくお待ちください。</p>
+        <a href="index.html">ホームページに戻る</a>
+    </div>
+
+    <!-- 
+    準備中ページへのリンク例：
+    <a href="under-construction.html">新機能（準備中）</a>
+    -->
+
+    <!-- 
+    準備中を表示する際の文言の事例：
+    1. "新しいコンテンツを準備しています。お楽しみに！"
+    2. "ただいまメンテナンス中です。ご不便をおかけして申し訳ございません。"
+    3. "Coming Soon! 近日公開予定です。"
+    4. "このセクションは現在更新中です。完成までもう少々お待ちください。"
+    5. "新しい機能を開発中です。もうしばらくお待ちください。"
+    -->
+
+    <script>
+        // JavaScriptを使用して準備中ページへリダイレクトする例
+        // 注意: この例では全てのリンクをリダイレクトします。実際の使用時は条件を適切に設定してください。
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A' && e.target.getAttribute('href') !== 'index.html') {
+                    e.preventDefault();
+                    alert('このページは準備中です。');
+                    // または、準備中ページにリダイレクト:
+                    // window.location.href = 'under-construction.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
